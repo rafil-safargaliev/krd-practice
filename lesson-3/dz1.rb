@@ -4,18 +4,18 @@
      # если не заканчивается - выводит слово задом наперед
 
 
-def word
+def word_check
 
     puts 'Введите слово'
 
-    slovo = gets.chomp.downcase
+    word = gets.chomp
 
     # проверяем введённое слово
-    if slovo[-2..-1] == "cs"
-        "#{2 ** slovo.size}"
+    if word[-2..-1] == "cs"
+        2 ** word.size
     else
-        "#{slovo.reverse}"  
+        word.reverse 
     end
   end
   
-  puts word
+  puts word_check
