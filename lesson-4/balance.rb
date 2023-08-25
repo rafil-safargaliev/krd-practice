@@ -29,20 +29,24 @@ def operation
         puts 'Сколько хотите внести'
         num = gets.to_f
         if num > 0 
-        balance += num
-        puts "Текущий баланс #{balance}"
+          balance += num
+          puts "Текущий баланс #{balance}"
+          file = File.open('balance.txt', 'w')
+          file.write balance
         else
-        puts 'Ошибка. Сумма должна быть больше 0'
+          puts 'Ошибка. Сумма должна быть больше 0'
         end
 
     when 'W'
         puts 'Сколько хотите вывести денег'
         num = gets.to_f
         if num > 0 && num <= balance
-        balance -= num
-        puts "Текущий баланс #{balance}"
+          balance -= num
+          puts "Текущий баланс #{balance}"
+          file = File.open('balance.txt', 'w')
+          file.write balance
         else
-        puts 'Ошибка. Вы не можете снять больше, чем у Вас есть в балансе'    
+          puts 'Ошибка. Вы не можете снять больше, чем у Вас есть в балансе'    
         end
 
     when 'B'
@@ -59,3 +63,5 @@ def operation
   file = File.open('balance.txt', 'w')
   file.write balance
 end
+
+operation
