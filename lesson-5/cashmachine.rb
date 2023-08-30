@@ -1,4 +1,4 @@
-class CashMchine
+class CashMachine
 
     def initialize 
 
@@ -14,7 +14,6 @@ class CashMchine
             @balance = balance
         end
     end
-
     def deposit
         puts 'Сколько хотите внести'
         num = gets.to_f
@@ -22,9 +21,6 @@ class CashMchine
             @balance += num
             puts "Текущий баланс #{@balance}"
             puts
-            file = File.open('balance.txt', 'w')
-            file.write @balance
-            file.close
         else
             puts 'Ошибка. Сумма должна быть больше 0'
         end
@@ -37,9 +33,6 @@ class CashMchine
             @balance -= num
             puts "Текущий баланс #{@balance}"
             puts
-            file = File.open('balance.txt', 'w')
-            file.write @balance
-            file.close
         else
             puts 'Ошибка. Вы не можете снять больше, чем у Вас есть в балансе'    
         end
@@ -48,35 +41,33 @@ class CashMchine
     def balance
         puts "Текущий баланс #{@balance}"
         puts
-    end
+    end           
+ 
+        def init
+            loop do
+                puts 'Выберите одну из операций: 
+                D - внести деньги
+                W - вывести деньги
+                B - проверить баланс
+                Q - выйти'
 
-    def init
-        loop do
-            puts 'Выберите одну из операций: 
-            D - внести деньги
-            W - вывести деньги
-            B - проверить баланс
-            Q - выйти'
-
-            choice = gets.chomp.upcase
-            case choice
-            when 'D'
-                 deposit
-            when 'W'
-                withdraw
-            when 'B'
-                balance
-            when 'Q'
-                break
-            else
-                puts 'Вы ввели неправильную букву для операции'                  
-        end 
-
-        file = File.open('balance.txt', 'w')
-        file.write @balance
-        file.close
-    end
-  end
-end
-cash_machine = CashMchine.new
-cash_machine.init
+                choice = gets.chomp.upcase
+                case choice
+                when 'D'
+                    deposit
+                when 'W'
+                    withdraw
+                when 'B'
+                    balance
+                when 'Q'
+                    break
+                else
+                    puts 'Вы ввели неправильную букву для операции'                  
+            end 
+            file = File.open('balance.txt', 'w')
+            file.write @balance
+            file.close
+        end           
+    end  
+end  
+CashMachine.new.init
